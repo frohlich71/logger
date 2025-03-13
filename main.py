@@ -7,8 +7,9 @@ app = Flask(__name__)
 LOG_DIR = "logs"
 LOG_FILE = os.path.join(LOG_DIR, "remote_log.txt")
 
-if not os.path.exists(LOG_DIR):
-    os.makedirs(LOG_DIR)
+if not os.path.exists(LOG_FILE):
+    with open(LOG_FILE, "w", encoding="utf-8") as f:
+        f.write("")
 
 
 @app.route("/get-logs")

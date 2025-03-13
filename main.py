@@ -10,6 +10,15 @@ LOG_FILE = os.path.join(LOG_DIR, "remote_log.txt")
 if not os.path.exists(LOG_DIR):
     os.makedirs(LOG_DIR)
 
+
+@app.route("/get-logs")
+def get_logs():
+    logs = ""
+    with open(LOG_FILE, "r", encoding="utf-8") as f:
+        logs = f.read()
+        
+    return logs
+
 @app.route("/upload-log", methods=["POST"])
 def upload_log():
     log = request.form.get("log", "")
